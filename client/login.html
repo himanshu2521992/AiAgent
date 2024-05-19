@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      margin: 0 auto;
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="loginForm" onsubmit="login(event)">
+    <h2>Login</h2>
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+</body>
+
+</html>
+<script>
+  function login() {
+    console.log('submit button clicked');
+    event.preventDefault(); // Prevent form submission
+
+    // Get username and password entered by the user
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Here, you can implement your logic to match the username and password
+    // For demonstration purposes, I'm just logging them to the console
+    console.log('Username:', username);
+    console.log('Password:', password);
+
+    if (username === 'test' && password === 'test') {
+      console.log('login successfull');
+      window.location.href = 'index.html';
+    } else {
+      console.log('invalid user name')
+      alert('Invalid username and password');
+    }
+  }
+</script>

@@ -36,7 +36,6 @@ async function processUserInput(userInput) {
   return action;
 }
 
-// Function to perform file upload
 async function uploadFile(filePath = false) {
   try {
     const browser = await chromium.launch({ headless: false });
@@ -82,21 +81,10 @@ async function main() {
 
   if (action === 'upload_file') {
     await uploadFile();
-    // rl.question('Please enter the full path of the file you want to upload: ', async (filePath) => {
-    //   if (fs.existsSync(filePath)) {
-    //     await uploadFile(filePath);
-    //   } else {
-    //     console.log('The file path you provided does not exist. Please try again.');
-    //   }
-    //   rl.close();
-    // });
   } else if (action === 'delete_file') {
-    // Implement delete file functionality if needed
     console.log("Delete file functionality is not implemented yet.");
-    rl.close();
   } else {
     console.log("Sorry, I didn't understand that command.");
-    rl.close();
   }
 }
 

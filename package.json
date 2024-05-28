@@ -18,5 +18,9 @@
     "playwright": "^1.44.0",
     "python-shell": "^5.0.0",
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@zerostep/playwright": "^0.1.5",
+    "auto-playwright": "^1.14.0"
   }
 }

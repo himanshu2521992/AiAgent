@@ -1,5 +1,4 @@
 import { config } from 'dotenv';
-import fs from 'fs';
 import { OpenAI } from 'openai';
 import { chromium } from 'playwright';
 import readlineSync from 'readline-sync';
@@ -36,6 +35,7 @@ async function processUserInput(userInput) {
   return action;
 }
 
+// Function to perform file upload
 async function uploadFile(filePath = false) {
   try {
     const browser = await chromium.launch({ headless: false });
@@ -44,7 +44,7 @@ async function uploadFile(filePath = false) {
     // Ask the user for input
     const username = readlineSync.question('Please enter username: ');
     await page.fill('input[name="username"]', username);
-    const pwd = await readlineSync.question('Please enter password: ', { hideEchoBack: true });
+    const pwd = readlineSync.question('Please enter password: ', { hideEchoBack: true });
     await page.fill('input[name="password"]', pwd);
 
     console.log('\n\nTrying to login');
@@ -53,7 +53,6 @@ async function uploadFile(filePath = false) {
 
     if (await page.title() === 'Web Agent') {
       console.log('\n\nLogin successfull');
-
       await delay(1000);
       console.log('\n\nGoing to upload page');
       await page.click('#upload-button');
@@ -81,7 +80,14 @@ async function main() {
 
   if (action === 'upload_file') {
     await uploadFile();
+    // const filePath = readlineSync.question('Please enter the full path of the file you want to upload: ');
+    // if (fs.existsSync(filePath)) {
+    //   await uploadFile(filePath);
+    // } else {
+    //   console.log('The file path you provided does not exist. Please try again.');
+    // }
   } else if (action === 'delete_file') {
+    // Implement delete file functionality if needed
     console.log("Delete file functionality is not implemented yet.");
   } else {
     console.log("Sorry, I didn't understand that command.");
